@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 静态导出配置（部署到 GitHub Pages / Gitee Pages 必须）
-  output: "export",
-
-  // 静态导出时图片不优化
+  // 图片不优化（兼容性更好）
   images: {
     unoptimized: true,
   },
@@ -18,8 +15,8 @@ const nextConfig = {
     root: ".",
   },
 
-  // 部署到子路径时设置（如 https://xxx.github.io/repo-name/）
-  // 如果部署到根域名可以注释掉
+  // 部署到子路径时设置（GitHub Pages 需要，Vercel 不需要）
+  // 如果部署到 Vercel，注释掉下面这行
   // basePath: "/rffe-dashboard",
 }
 

@@ -27,8 +27,28 @@ const tooltipStyle = {
   color: '#cdd6f4',
 }
 
-export function InstrumentDonut() {
-  const data = instrumentDistribution()
+interface DonutData {
+  name: string
+  value: number
+  color: string
+}
+
+interface CaseData {
+  name: string
+  已测: number
+  未测: number
+}
+
+interface InstrumentDonutProps {
+  data?: DonutData[]
+}
+
+interface CaseStatusBarsProps {
+  data?: CaseData[]
+}
+
+export function InstrumentDonut({ data: propData }: InstrumentDonutProps = {}) {
+  const data = propData || instrumentDistribution()
   const total = data.reduce((s, d) => s + d.value, 0)
 
   return (
@@ -50,7 +70,7 @@ export function InstrumentDonut() {
         </Pie>
         <Tooltip
           contentStyle={tooltipStyle}
-          formatter={(v: number, n) => [`${v} 项 (${Math.round((v / total) * 100)}%)`, n]}
+          formatter={(v: number, n) => [`${v} 项 (${total > 0 ? Math.round((v / total) * 100) : 0}%)`, n]}
         />
         <Legend
           wrapperStyle={{ fontSize: 12, color: COLORS.muted }}
@@ -61,8 +81,8 @@ export function InstrumentDonut() {
   )
 }
 
-export function CaseStatusBars() {
-  const data = caseStatusDistribution()
+export function CaseStatusBars({ data: propData }: CaseStatusBarsProps = {}) {
+  const data = propData || caseStatusDistribution()
   return (
     <ResponsiveContainer width="100%" height={320}>
       <BarChart data={data} layout="vertical" margin={{ left: 12, right: 12 }}>
