@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 图片不优化（兼容性更好）
+  // 静态导出（GitHub Pages 部署用）
+  output: "export",
+
+  // 部署到子路径
+  basePath: "/rffe-dashboard",
+
+  // 图片不优化
   images: {
     unoptimized: true,
   },
@@ -14,10 +20,6 @@ const nextConfig = {
   turbopack: {
     root: ".",
   },
-
-  // 部署到子路径时设置（GitHub Pages 需要，Vercel 不需要）
-  // 如果部署到 Vercel，注释掉下面这行
-  // basePath: "/rffe-dashboard",
 }
 
 export default nextConfig
