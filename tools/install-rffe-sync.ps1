@@ -1,6 +1,7 @@
 param([string]$ConfigPath = (Join-Path $PSScriptRoot "rffe-sync.config.json"))
 
 $ErrorActionPreference = "Stop"
+$ConfigPath = (Resolve-Path -LiteralPath $ConfigPath).Path
 $config = Get-Content -LiteralPath $ConfigPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $syncScript = Join-Path $PSScriptRoot "rffe-sync.ps1"
 $powerShell = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
