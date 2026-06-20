@@ -72,7 +72,10 @@ export function InstrumentDonut({ data: propData }: InstrumentDonutProps = {}) {
           contentStyle={tooltipStyle}
           formatter={(value, name) => {
             const count = Number(value || 0)
-            return [`${count} 项 (${total > 0 ? Math.round((count / total) * 100) : 0}%)`, String(name || '')]
+            return [
+              `${count} 项 (${total > 0 ? Math.round((count / total) * 100) : 0}%)`,
+              String(name || ''),
+            ]
           }}
         />
         <Legend

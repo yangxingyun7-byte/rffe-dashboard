@@ -7,11 +7,19 @@ import { cn } from '@/lib/utils'
 
 const STATUS_STYLE: Record<RffeStatus, { cell: string; label: string }> = {
   tested: { cell: 'bg-rf-green/70 hover:bg-rf-green', label: '已测试' },
-  untested: { cell: 'bg-rf-yellow/40 hover:bg-rf-yellow/70', label: '待测试' },
+  untested: { cell: 'bg-rf-yellow/40 hover:bg-rf-yellow/70', label: '未测试' },
   na: { cell: 'bg-secondary/40 hover:bg-secondary', label: '不适用' },
 }
 
-export function CoverageMatrix({ devices, testCases, matrix }: { devices: RffeDevice[]; testCases: RffeTestCase[]; matrix: Record<string, Record<string, RffeStatus>> }) {
+export function CoverageMatrix({
+  devices,
+  testCases,
+  matrix,
+}: {
+  devices: RffeDevice[]
+  testCases: RffeTestCase[]
+  matrix: Record<string, Record<string, RffeStatus>>
+}) {
   const [hover, setHover] = useState<{ caseId: string; deviceId: string } | null>(
     null,
   )
@@ -32,7 +40,7 @@ export function CoverageMatrix({ devices, testCases, matrix }: { devices: RffeDe
           <thead>
             <tr>
               <th className="sticky left-0 z-10 bg-card px-2 py-2 text-left font-medium text-muted-foreground">
-                Case \ 器件
+                Case / 器件
               </th>
               {devices.map((d) => (
                 <th
@@ -70,9 +78,10 @@ export function CoverageMatrix({ devices, testCases, matrix }: { devices: RffeDe
                         className={cn(
                           'mx-auto h-6 w-full min-w-[20px] cursor-default rounded-sm transition-colors',
                           STATUS_STYLE[status].cell,
-                          isHover && 'ring-2 ring-rf-blue ring-offset-1 ring-offset-card',
+                          isHover &&
+                            'ring-2 ring-rf-blue ring-offset-1 ring-offset-card',
                         )}
-                        title={`${c.name} × ${d.id} · ${STATUS_STYLE[status].label}`}
+                        title={`${c.name} · ${d.id} · ${STATUS_STYLE[status].label}`}
                       />
                     </td>
                   )
@@ -88,9 +97,9 @@ export function CoverageMatrix({ devices, testCases, matrix }: { devices: RffeDe
           <span className="font-medium text-foreground">
             {testCases.find((c) => c.id === hover.caseId)?.name}
           </span>
-          {' × '}
+          {' · '}
           <span className="font-mono text-rf-blue">{hover.deviceId}</span>
-          {' — '}
+          {' · '}
           {STATUS_STYLE[matrix[hover.caseId][hover.deviceId]].label}
         </div>
       )}

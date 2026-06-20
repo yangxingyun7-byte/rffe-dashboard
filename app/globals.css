@@ -5,10 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-heading: var(--font-orbitron), 'Microsoft YaHei', '微软雅黑', sans-serif;
-  --font-sans: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Hiragino Sans GB',
+  --font-heading: 'Orbitron', 'Segoe UI', 'Microsoft YaHei', 'PingFang SC',
+    'Hiragino Sans GB', 'Heiti SC', sans-serif;
+  --font-sans: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB',
     'Heiti SC', 'WenQuanYi Micro Hei', sans-serif;
-  --font-mono: var(--font-jetbrains), 'JetBrains Mono Fallback', monospace;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'SFMono-Regular', 'Cascadia Code',
+    monospace;
 
   /* Catppuccin Mocha accent palette */
   --color-rf-red: var(--rf-red);
@@ -57,7 +59,7 @@
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
-/* Catppuccin Mocha — forced dark mechanical theme */
+/* Catppuccin Mocha inspired forced dark mechanical theme */
 :root {
   color-scheme: dark;
 
