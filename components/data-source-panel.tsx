@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FileSpreadsheet, RefreshCw, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -10,6 +10,7 @@ interface DataSourcePanelProps {
   lastUpdated?: string;
   loading: boolean;
   error: string | null;
+  refreshMinutes: number;
   onSaveUrl: (url: string) => void;
   onRefresh: () => void;
   onSelectLocalFile: (file?: File) => void;
@@ -18,6 +19,8 @@ interface DataSourcePanelProps {
 export function DataSourcePanel(props: DataSourcePanelProps) {
   const [url, setUrl] = useState(props.sourceUrl);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => setUrl(props.sourceUrl), [props.sourceUrl]);
 
   return (
     <section className="mb-6 rounded-lg border border-border bg-card p-4">
@@ -43,7 +46,7 @@ export function DataSourcePanel(props: DataSourcePanelProps) {
       <input ref={inputRef} className="hidden" type="file" accept=".xlsx" onChange={(event) => event.target.files?.[0] && props.onSelectLocalFile(event.target.files[0])} />
       <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-muted-foreground">
         <span>当前源：{props.sourceLabel || "正在加载"}</span>
-        <span>自动刷新：每 5 分钟</span>
+        <span>自动刷新：每 {props.refreshMinutes} 分钟</span>
         {props.lastUpdated && <span>最后读取：{new Date(props.lastUpdated).toLocaleString("zh-CN")}</span>}
         {props.error && <span className="text-rf-red">{props.error}</span>}
       </div>

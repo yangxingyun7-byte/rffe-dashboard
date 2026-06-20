@@ -1,0 +1,14 @@
+{
+  "sourceExcelPath": "D:\\Hardware_Engineer_YXY\\AI\\03_proj\\RFFE_DASHBOARD\\RFFE自动化测试平台Control Table.xlsx",
+  "syncIntervalSeconds": 180,
+  "repositoryPath": "D:\\Hardware_Engineer_YXY\\AI\\03_proj\\RFFE_DASHBOARD\\rffe_proj",
+  "publicExcelRelativePath": "public\\data\\control-table.xlsx",
+  "outputExcelRelativePath": "out\\data\\control-table.xlsx",
+  "gitExecutable": "C:\\Users\\73209\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe",
+  "remoteName": "github",
+  "sourceBranch": "master",
+  "pagesBranch": "gh-pages",
+  "taskName": "RFFE Dashboard Excel Sync",
+  "logFilePath": "D:\\Hardware_Engineer_YXY\\AI\\03_proj\\RFFE_DASHBOARD\\rffe-sync.log",
+  "stateFilePath": "D:\\Hardware_Engineer_YXY\\AI\\03_proj\\RFFE_DASHBOARD\\rffe-sync.state.json"
+}
