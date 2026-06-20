@@ -60,7 +60,7 @@ export function Navigation() {
         <div className="ml-auto hidden items-center gap-2 md:flex">
           <span className="flex items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5 text-xs text-muted-foreground">
             <span className="h-2 w-2 animate-pulse rounded-full bg-rf-green" />
-            飞书数据源已连接
+            Excel 数据源已连接
           </span>
         </div>
       </div>

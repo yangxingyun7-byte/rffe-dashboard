@@ -70,7 +70,10 @@ export function InstrumentDonut({ data: propData }: InstrumentDonutProps = {}) {
         </Pie>
         <Tooltip
           contentStyle={tooltipStyle}
-          formatter={(v: number, n) => [`${v} 项 (${total > 0 ? Math.round((v / total) * 100) : 0}%)`, n]}
+          formatter={(value, name) => {
+            const count = Number(value || 0)
+            return [`${count} 项 (${total > 0 ? Math.round((count / total) * 100) : 0}%)`, String(name || '')]
+          }}
         />
         <Legend
           wrapperStyle={{ fontSize: 12, color: COLORS.muted }}
