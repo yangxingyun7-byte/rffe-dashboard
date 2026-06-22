@@ -27,6 +27,9 @@ const tooltipStyle = {
   color: '#cdd6f4',
 }
 
+const formatCaseAxisName = (name: string) =>
+  name.length > 24 ? `${name.slice(0, 23)}…` : name
+
 interface DonutData {
   name: string
   value: number
@@ -91,7 +94,7 @@ export function CaseStatusBars({ data: propData }: CaseStatusBarsProps = {}) {
   const data = propData || caseStatusDistribution()
   return (
     <ResponsiveContainer width="100%" height={320}>
-      <BarChart data={data} layout="vertical" margin={{ left: 12, right: 12 }}>
+      <BarChart data={data} layout="vertical" margin={{ left: 56, right: 12 }}>
         <CartesianGrid stroke={COLORS.grid} horizontal={false} />
         <XAxis type="number" stroke={COLORS.muted} fontSize={11} />
         <YAxis
@@ -99,7 +102,8 @@ export function CaseStatusBars({ data: propData }: CaseStatusBarsProps = {}) {
           dataKey="name"
           stroke={COLORS.muted}
           fontSize={10}
-          width={92}
+          width={150}
+          tickFormatter={formatCaseAxisName}
         />
         <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(137,180,250,0.06)' }} />
         <Legend wrapperStyle={{ fontSize: 12 }} iconType="circle" />
