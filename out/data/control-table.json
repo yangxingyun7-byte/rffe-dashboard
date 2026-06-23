@@ -1,0 +1,32 @@
+{
+  "source": "feishu",
+  "spreadsheetToken": "ICOts6o33hGMwmtJmSEcYY51nVf",
+  "sheetId": "902rKA",
+  "sheetTitle": "RFFE Case control table",
+  "updatedAt": "2026-06-23T16:30:00+08:00",
+  "values": [
+    ["RFFE测试Cases测试文档： RFFE自动化测试性能总结", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    ["RFFE测试Cases设计文档：", "射频前端自动化测试平台设计", null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    ["RFFE测试指标文档：", "蜂窝射频前端器件SIP关键指标梳理", null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    ["Case", "所属通路", "测试状态", null, null, null, null, null, null, null, null, null, null, "目前测试+开发进展/难点", "R&S解决方案", "Keysight解决方案"],
+    [null, null, " LB L-PAMID", "MHB L-PAMID ", "CBL L-PAMIF (PA+ASM+LNA)", null, null, null, "LMHB PA", "Sub7G UHB PA", "D-FEM (LNA+Filter)", null, null, null, null, null],
+    [null, null, "QM77055", "QM77048", "VC7535-88", "QM78218", "QM78318", "VC7579", "VC8016", "VC7514", "MXD98M9EA", "MXD9823AT", "VC3726M", null, null, null],
+    ["PA DROOP", "TX", "已测", "已测", "已测", "已测", "已测", "已测", "已测", "未测", "无", "无", "无", null, "ZNB8", null],
+    ["PA AM-AM", "TX", "未测", "未测", "未测", "未测", "未测", "未测", "未测", "未测", "无", "无", "无", "网分功率不准，导致无法测试到准确的AM-AM曲线,线性度主要观测ACLR/IM3+5指标", "ZNB8", null],
+    ["IMD3/5", "TX", "已测", "已测", "已测", "未测", "已测", "已测", "已测", "未测", "无", "无", "无", null, "FSW26 + SMM100A", "N9021B + M9484C"],
+    ["PA Harmonic", "TX", "已测", "已测", "已测", "已测", "已测", "已测", "已测", "未测", "无", "无", "无", null, "FSW26 + SMM100A", "N9021B + N5183B"],
+    ["TX ACLR", "TX", "已测", "已测", "已测", "已测", "已测", "已测", "已测", "未测", "无", "无", "无", null, "FSW26 + SMM100A", null],
+    ["TX EVM", "TX", "已测", "已测", "已测", "已测", "已测", "已测", "已测", "未测", "无", "无", "无", null, "FSW26 + SMM100A", null],
+    ["Power VS Current", "TX", "已测", "已测", "已测", "已测", "已测", "已测", "已测", "未测", "无", "无", "无", null, "FSW26 + SMM100A", null],
+    ["2G_Vramp", "TX", "已测", "无", "无", "无", "无", "无", "已测", "无", "无", "无", "无", null, "FSW26 + SMM100A", null],
+    ["Chip Vramp", "TX", "未测", "无", "无", "无", "无", "无", "已测", "无", "无", "无", "无", null, "FSW26 + SMM100A", null],
+    ["TRX ISOLATION\n (TX Leakage，RX noise @TX On/off)", "PRX", "未测", "未测", "未测", "未测", "未测", "未测", "已测", "无", "无", "无", "无", null, "ZNB8", "N9021B + N5183B"],
+    ["LNA DROOP (包含Gain Index)", "PRX,DRX", "已测", "已测", "已测", "已测", "已测", "已测", "已测", "无", "未测", "未测", "未测", null, "ZNB8", null],
+    ["LNA Phase Error (包含Gain Index @ LB，MB)", "PRX,DRX", "未测", "未测", "未测", "未测", "未测", "已测", "未测", "无", "未测", "未测", "未测", null, "ZNB8", null],
+    ["LNA IP3", "PRX,DRX", "已测", "已测", "已测", "未测", "已测", "已测", "已测", "无", "未测", "未测", "未测", null, "FSW26 + SMM100A", "N9021B + M9484C"],
+    ["RX Noise Figure", "PRX,DRX", "未测", "未测", "未测", "未测", "未测", "已测", "已测", "未测", "未测", "未测", "未测", null, "FSW26", null],
+    ["器件EVB盘点", null, "有", "有", "有", "有", "有", "有", "有", "无", "无", "无", "无", null, null, null],
+    ["测试报告", null, "QM77055", "QM77048", "VC7535-88", "QM78218", "QM78318", "VC7579", "VC8016", "VC7514", "MXD98M9EA", "MXD9823AT", "VC3726M", null, null, null],
+    [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+  ]
+}

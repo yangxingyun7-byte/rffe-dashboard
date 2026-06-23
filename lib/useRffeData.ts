@@ -39,11 +39,19 @@ export interface RffeData {
 }
 
 const REFRESH_INTERVAL = 60 * 1000;
-const DEFAULT_SOURCE = "/rffe-dashboard/data/control-table.xlsx";
+const DEFAULT_SOURCE = "/rffe-dashboard/data/control-table.json";
 const SOURCE_STORAGE_KEY = "rffe-dashboard-excel-url";
 
-function text(value: unknown) {
-  return value == null ? "" : String(value).trim();
+function text(value: unknown): string {
+  if (value == null) return "";
+  if (Array.isArray(value)) {
+    return value.map((item) => text(item)).join("").trim();
+  }
+  if (typeof value === "object") {
+    const item = value as { text?: unknown };
+    return text(item.text);
+  }
+  return String(value).trim();
 }
 
 function status(value: unknown): RffeStatus {
@@ -53,12 +61,7 @@ function status(value: unknown): RffeStatus {
   return "na";
 }
 
-function parseWorkbook(buffer: ArrayBuffer, sourceLabel: string): RffeData {
-  const workbook = read(buffer, { type: "array" });
-  const worksheet = workbook.Sheets["RFFE Case control table"];
-  if (!worksheet) throw new Error("未找到工作表：RFFE Case control table");
-
-  const rows = utils.sheet_to_json<unknown[]>(worksheet, { header: 1, defval: "" });
+function parseRows(rows: unknown[][], sourceLabel: string): RffeData {
   const deviceIds: string[] = [];
   for (let column = 2; column <= 12; column += 1) {
     const id = text(rows[5]?.[column]);
@@ -121,6 +124,21 @@ function parseWorkbook(buffer: ArrayBuffer, sourceLabel: string): RffeData {
   };
 }
 
+function parseWorkbook(buffer: ArrayBuffer, sourceLabel: string): RffeData {
+  const workbook = read(buffer, { type: "array" });
+  const worksheet = workbook.Sheets["RFFE Case control table"];
+  if (!worksheet) throw new Error("未找到工作表：RFFE Case control table");
+
+  const rows = utils.sheet_to_json<unknown[]>(worksheet, { header: 1, defval: "" });
+  return parseRows(rows, sourceLabel);
+}
+
+function parseFeishuJson(payload: any, sourceLabel: string): RffeData {
+  const rows = Array.isArray(payload?.values) ? payload.values : payload;
+  if (!Array.isArray(rows)) throw new Error("飞书中转数据格式错误");
+  return parseRows(rows, sourceLabel);
+}
+
 export function useRffeData() {
   const [data, setData] = useState<RffeData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -136,19 +154,24 @@ export function useRffeData() {
       let file: File | null = fileRef.current;
       if (fileHandleRef.current) file = await fileHandleRef.current.getFile();
 
-      let buffer: ArrayBuffer;
       let label: string;
+      let nextData: RffeData;
       if (file) {
-        buffer = await file.arrayBuffer();
+        const buffer = await file.arrayBuffer();
         label = file.name;
+        nextData = parseWorkbook(buffer, label);
       } else {
         const separator = sourceUrl.includes("?") ? "&" : "?";
         const response = await fetch(`${sourceUrl}${separator}t=${Date.now()}`, { cache: "no-store" });
-        if (!response.ok) throw new Error(`Excel 下载失败：HTTP ${response.status}`);
-        buffer = await response.arrayBuffer();
+        if (!response.ok) throw new Error(`数据下载失败：HTTP ${response.status}`);
         label = sourceUrl;
+        if (sourceUrl.toLowerCase().split("?")[0].endsWith(".json")) {
+          nextData = parseFeishuJson(await response.json(), label);
+        } else {
+          nextData = parseWorkbook(await response.arrayBuffer(), label);
+        }
       }
-      setData(parseWorkbook(buffer, label));
+      setData(nextData);
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "Excel 数据加载失败");
     } finally {
