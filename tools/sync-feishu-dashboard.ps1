@@ -93,10 +93,14 @@ function Sync-Once {
 
     $token = Get-FeishuTenantAccessToken -AppId $appId -AppSecret $appSecret
     $values = Read-FeishuSheetValues -Token $token
-    $plainRows = @($values | ForEach-Object {
-        $row = $_
-        @($row | ForEach-Object { Convert-CellText $_ })
-    })
+    $plainRows = [System.Collections.Generic.List[object]]::new()
+    foreach ($row in $values) {
+        $plainRow = [System.Collections.Generic.List[object]]::new()
+        foreach ($cell in $row) {
+            $plainRow.Add((Convert-CellText $cell))
+        }
+        $plainRows.Add($plainRow.ToArray())
+    }
 
     $payload = [ordered]@{
         source = "feishu"
