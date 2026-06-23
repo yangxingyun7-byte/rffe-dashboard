@@ -3,6 +3,7 @@ param(
     [string]$SpreadsheetToken = "ICOts6o33hGMwmtJmSEcYY51nVf",
     [string]$SheetId = "902rKA",
     [string]$Range = "A1:Y23",
+    [int]$SyncIntervalSeconds = 7200,
     [switch]$Once
 )
 
@@ -156,7 +157,7 @@ try {
         } catch {
             Write-AgentLog $_.Exception.Message "ERROR"
         }
-        if (-not $Once) { Start-Sleep -Seconds 60 }
+        if (-not $Once) { Start-Sleep -Seconds ([Math]::Max(60, $SyncIntervalSeconds)) }
     } while (-not $Once)
 } finally {
     $mutex.ReleaseMutex()
