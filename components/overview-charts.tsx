@@ -40,7 +40,7 @@ function CaseAxisTick({ x, y, payload }: any) {
       dy={3}
       textAnchor="end"
       fill={COLORS.muted}
-      fontSize={10}
+      fontSize={8}
     >
       <title>{name}</title>
       {formatCaseAxisName(name)}
