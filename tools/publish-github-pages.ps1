@@ -50,7 +50,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $RepositoryPath "out"))) {
     throw "Build completed but out directory was not found."
 }
 
-Invoke-Checked "Stage dashboard source and static output" { git add -- components/overview-charts.tsx out }
+Invoke-Checked "Stage dashboard source and static output" { git add -- components lib out }
 $staged = @(git diff --cached --name-only)
 if ($LASTEXITCODE -ne 0) { throw "Unable to read staged files." }
 if ($staged.Count -eq 0) {
