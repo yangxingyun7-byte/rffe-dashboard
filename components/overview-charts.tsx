@@ -35,7 +35,7 @@ function CaseAxisTick({ x, y, payload }: any) {
 
   return (
     <text
-      x={x}
+      x={x + 40}
       y={y}
       dy={3}
       textAnchor="end"
