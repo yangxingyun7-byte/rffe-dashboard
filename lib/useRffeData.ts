@@ -183,6 +183,14 @@ export function useRffeData() {
     }
   }, [refresh]);
 
+  const refreshLocalFile = useCallback(async () => {
+    if (fileHandleRef.current || fileRef.current) {
+      await refresh();
+      return;
+    }
+    await selectLocalFile();
+  }, [refresh, selectLocalFile]);
+
   useEffect(() => {
     const saved = localStorage.getItem(SOURCE_STORAGE_KEY);
     if (saved) setSourceUrlState(saved);
@@ -194,5 +202,5 @@ export function useRffeData() {
     return () => window.clearInterval(timer);
   }, [refresh]);
 
-  return { data, loading, error, refresh, sourceUrl, setSourceUrl, selectLocalFile, refreshMinutes: 1 };
+  return { data, loading, error, refresh: refreshLocalFile, sourceUrl, setSourceUrl, selectLocalFile, refreshMinutes: 1 };
 }
