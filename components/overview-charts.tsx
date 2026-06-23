@@ -94,7 +94,7 @@ export function CaseStatusBars({ data: propData }: CaseStatusBarsProps = {}) {
   const data = propData || caseStatusDistribution()
   return (
     <ResponsiveContainer width="100%" height={320}>
-      <BarChart data={data} layout="vertical" margin={{ left: 56, right: 12 }}>
+      <BarChart data={data} layout="vertical" margin={{ left: 76, right: 12 }}>
         <CartesianGrid stroke={COLORS.grid} horizontal={false} />
         <XAxis type="number" stroke={COLORS.muted} fontSize={11} />
         <YAxis
