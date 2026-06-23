@@ -73,8 +73,8 @@ function Get-FeishuTenantAccessToken {
 
 function Read-FeishuSheetValues {
     param([string]$Token)
-    $encodedRange = [System.Uri]::EscapeDataString("$SheetId!$Range")
-    $uri = "https://open.feishu.cn/open-apis/sheets/v2/spreadsheets/$SpreadsheetToken/values/$encodedRange?valueRenderOption=FormattedValue"
+    $rangeText = "$SheetId!$Range"
+    $uri = "https://open.feishu.cn/open-apis/sheets/v2/spreadsheets/$SpreadsheetToken/values/${rangeText}?valueRenderOption=FormattedValue"
     $headers = @{ Authorization = "Bearer $Token" }
     $response = Invoke-RestMethod -Method Get -Uri $uri -Headers $headers
     if ($response.code -ne 0) {
