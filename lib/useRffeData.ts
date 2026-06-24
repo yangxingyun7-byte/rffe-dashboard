@@ -38,7 +38,7 @@ export interface RffeData {
   stats: RffeStats;
 }
 
-const REFRESH_INTERVAL = 60 * 1000;
+const REFRESH_INTERVAL = 2 * 60 * 60 * 1000;
 const DEFAULT_SOURCE = "/rffe-dashboard/data/control-table.json";
 const SOURCE_STORAGE_KEY = "rffe-dashboard-excel-url";
 
@@ -225,5 +225,5 @@ export function useRffeData() {
     return () => window.clearInterval(timer);
   }, [refresh]);
 
-  return { data, loading, error, refresh: refreshLocalFile, sourceUrl, setSourceUrl, selectLocalFile, refreshMinutes: 1 };
+  return { data, loading, error, refresh: refreshLocalFile, sourceUrl, setSourceUrl, selectLocalFile, refreshMinutes: 120 };
 }
