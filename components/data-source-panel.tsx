@@ -46,7 +46,7 @@ export function DataSourcePanel(props: DataSourcePanelProps) {
       <input ref={inputRef} className="hidden" type="file" accept=".xlsx" onChange={(event) => event.target.files?.[0] && props.onSelectLocalFile(event.target.files[0])} />
       <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[11px] text-muted-foreground">
         <span>当前源：{props.sourceLabel || "正在加载"}</span>
-        <span>自动刷新：每 {props.refreshMinutes} 分钟</span>
+        <span>自动刷新：每 {props.refreshMinutes === 120 ? "2 小时" : `${props.refreshMinutes} 分钟`}</span>
         {props.lastUpdated && <span>最后读取：{new Date(props.lastUpdated).toLocaleString("zh-CN")}</span>}
         {props.error && <span className="text-rf-red">{props.error}</span>}
       </div>
