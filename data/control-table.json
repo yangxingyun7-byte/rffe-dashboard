@@ -4,7 +4,7 @@
     "sheetId":  "902rKA",
     "range":  "902rKA!A1:Y23",
     "sheetTitle":  "RFFE Case control table",
-    "updatedAt":  "2026-06-26T10:21:07.0645333+08:00",
+    "updatedAt":  "2026-06-26T12:25:13.6611748+08:00",
     "values":  [
                    [
                        "RFFE测试Cases测试文档： RFFE自动化测试性能总结",
@@ -89,7 +89,7 @@
                    ],
                    [
                        "RFFE单体器件性能测试维度+SPEC",
-                       null,
+                       "RFHW_射频前端器件单体Specification",
                        null,
                        null,
                        null,
