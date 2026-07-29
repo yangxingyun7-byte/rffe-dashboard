@@ -1,2 +1,2 @@
 :HL["/rffe-dashboard/_next/static/chunks/0d67od6cl5-uh.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"tajxhLDz2DI1MB-BoGSH1"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"B3M7SNufaKAJnmo0Ipn-c"}
